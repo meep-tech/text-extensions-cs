@@ -1,6 +1,10 @@
 ﻿using System.Text;
 
 namespace Meep.Tech.Text {
+
+    /// <summary>
+    /// Common Extensions for string types.
+    /// </summary>
     public static class StringExtensions {
 
         /// <inheritdoc cref="string.IsNullOrWhiteSpace(string)"/>
