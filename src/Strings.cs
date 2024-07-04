@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text;
 
 namespace Meep.Tech.Text {
 
@@ -6,6 +7,38 @@ namespace Meep.Tech.Text {
     /// Common Extensions for string types.
     /// </summary>
     public static class StringExtensions {
+
+        #region Validation
+
+        /// <summary>
+        /// Determines if the string is entirely upper case.
+        /// </summary>
+        public static bool IsUpper(this string text) {
+            ArgumentNullException.ThrowIfNull(text);
+
+            foreach(char c in text) {
+                if(!char.IsUpper(c)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Determines if the string is entirely lower case.
+        /// </summary>
+        public static bool IsLower(this string text) {
+            ArgumentNullException.ThrowIfNull(text);
+
+            foreach(char c in text) {
+                if(!char.IsLower(c)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         /// <inheritdoc cref="string.IsNullOrWhiteSpace(string)"/>
         public static bool IsNullOrWhiteSpace(this string? s)
@@ -22,6 +55,10 @@ namespace Meep.Tech.Text {
         /// <inheritdoc cref="string.IsNullOrWhiteSpace(string)"/>
         public static bool IsNotNullOrWhiteSpace(this string? s)
             => !string.IsNullOrWhiteSpace(s);
+
+        #endregion
+
+        #region Case Conversion
 
         /// <summary>
         ///  Converts a string to snake_case 
@@ -46,5 +83,29 @@ namespace Meep.Tech.Text {
 
             return result.ToString();
         }
+
+        #endregion
+
+        #region Try Get Char At
+
+        /// <summary>
+        ///  Attempts to get the character at the specified index.
+        /// </summary>
+        /// <param name="text">The text to get the character from.</param>
+        /// <param name="index">The index of the character to get.</param>
+        /// <param name="c">The character at the specified index, if it exists.</param>
+        /// <returns>True if the character exists; otherwise, false.</returns>
+        public static bool TryGetCharAt(this string text, int index, [NotNullWhen(true)] out char? c) {
+            if(index < 0 || index >= text.Length) {
+                c = null;
+                return false;
+            }
+
+            c = text[index];
+            return true;
+        }
     }
+
+    #endregion
+
 }
