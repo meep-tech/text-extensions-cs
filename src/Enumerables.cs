@@ -41,5 +41,14 @@ namespace Meep.Tech.Text {
     public static string Join(this IEnumerable<string> strings, string separator, FormattableString transform)
       => string.Join(separator, strings.Select(s => transform.Format.Replace("{0}", s)));
 
+    /// <inheritdoc cref="string.Join(char, object[])"/>
+    /// <param name="strings"><inheritdoc cref="string.Join(char, object[])" path="/param[@name='values']"/></param>
+    public static string Join(this IEnumerable<string> strings)
+      => string.Join("", strings);
+
+    /// <inheritdoc cref="string.Join(char, object[])"/>
+    /// <param name="chars"><inheritdoc cref="string.Join(char, object[])" path="/param[@name='values']"/></param>
+    public static string Join(this IEnumerable<char> chars)
+      => string.Join("", chars);
   }
 }
