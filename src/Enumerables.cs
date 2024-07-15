@@ -5,6 +5,8 @@ namespace Meep.Tech.Text {
   /// </summary>
   public static class StringEnumerableExtensions {
 
+    #region Join
+
     /// <inheritdoc cref="string.Join(char, object[])"/>
     /// <param name="source"><inheritdoc cref="string.Join(char, object[])" path="/param[@name='values']"/></param>
     /// <param name="separator"><inheritdoc cref="string.Join(char, object[])" path="/param[@name='separator']"/></param>
@@ -50,5 +52,7 @@ namespace Meep.Tech.Text {
     /// <param name="chars"><inheritdoc cref="string.Join(char, object[])" path="/param[@name='values']"/></param>
     public static string Join(this IEnumerable<char> chars)
       => string.Join("", chars);
+
+    #endregion
   }
 }
